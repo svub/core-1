@@ -342,9 +342,9 @@ class FullConsensusAgent extends BaseConsensusAgent {
      * @protected
      * @override
      */
-    _processTransaction(hash, transaction) {
-        // TODO send reject message if we don't like the transaction
-        return this._mempool.pushTransaction(transaction);
+    async _processTransaction(hash, transaction) {
+        const result = await this._mempool.pushTransaction(transaction);
+        return result === Mempool.ReturnCode.ACCEPTED;
     }
 
     /**
