@@ -4317,9 +4317,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jungle-db@nimiq-network/jungle-db#v0.3.6:
+jungle-db@nimiq-network/jungle-db#v0.3.6-bugfixes:
   version "0.3.6"
-  resolved "https://codeload.github.com/nimiq-network/jungle-db/tar.gz/49bf92316b822e5c3e81431dadd9db429b5ce369"
+  resolved "https://codeload.github.com/nimiq-network/jungle-db/tar.gz/c76e5332a703b94940c36492cca40dfc6c578831"
   dependencies:
     fs "^0.0.1-security"
     level-sublevel "^6.6.1"
