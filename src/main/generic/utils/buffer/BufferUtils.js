@@ -140,7 +140,7 @@ class BufferUtils {
     static fromHex(hex) {
         hex = hex.trim();
         if (!StringUtils.isHexBytes(hex)) return null;
-        return new SerialBuffer(Uint8Array.from(hex.match(/.{2}/g), byte => parseInt(byte, 16)));
+        return new SerialBuffer(Uint8Array.from(hex.match(/.{2}/g) || [], byte => parseInt(byte, 16)));
     }
 
     /**
