@@ -2,12 +2,16 @@
 
 **[Nimiq](https://nimiq.com/)** is a frictionless payment protocol for the web.
 
-For a high-level introduction check out the [Nimiq White Paper](https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084).
+## Resources
 
-To dive into the details of the protocol architecture check out the [Nimiq Developer Reference](https://nimiq.com/developer-reference).
+- [Nimiq White Paper](https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084): High-level introduction of the Nimiq payment protocol.
+- [Nimiq Developer Reference](https://nimiq.com/developer-reference): Details of the protocol architecture.
+- [API Documentation](https://doc.esdoc.org/github.com/nimiq-network/core/).
+- [JSON-RPC Client](doc/json-rpc-client.md): Usage instructions for the Nimiq JSON-RPC Client.
+- [Docker Documentation](doc/json-rpc-client.md): How to quickly run and use a Nimiq Docker Image.
 
 ## Library Demo
-Check out our testnet [Browser Miner](https://nimiq.com/miner) and [Wallet](https://nimiq.com/wallet).
+Check out our [Testnet](https://nimiq-testnet.com).
 
 ## Quickstart
 
@@ -15,12 +19,12 @@ Check out our testnet [Browser Miner](https://nimiq.com/miner) and [Wallet](http
 2. On Ubuntu, install `git` and `build-essential`: `sudo apt-get install -y git build-essential`.
     - On other Linux systems, install `git`, `python2.7`, `make`, `gcc` and `gcc-c++`.
     - For MacOS or Windows, [check here for git](https://git-scm.com/downloads) and [here for compilation tools](https://github.com/nodejs/node-gyp#on-mac-os-x).
-3. If you want to use `yarn` to manage the dependencies, run: `sudo npm install -g yarn`.
-4. Install `gulp` globally: `sudo npm install -g gulp` or `yarn global add gulp`.
+3. Install yarn: `sudo npm install -g yarn`.
+4. Install `gulp` globally:  `yarn global add gulp`.
 5. Clone this repository: `git clone https://github.com/nimiq-network/core`.
 6. Enter the core directory: `cd core`.
-7. Run: `npm install` or `yarn`.
-8. Run: `npm run build` or `yarn build`.
+7. Run: `yarn`.
+8. Run: `yarn build`.
 9. Open `clients/browser/index.html` in your browser.
 
 ## Web Developers
@@ -34,121 +38,56 @@ Follow the Quickstart guide or use our CDN:
 <script src="https://cdn.nimiq.com/core/nimiq.js"></script>
 ```
 
+## Browser client
+
 ### Run browser client
 Open `clients/browser/index.html` in your browser.
 
 ### Build your own browser client
 Just include `<script src="dist/nimiq.js"></script>` in your project.
 
-### API
-Visit the [API Documentation](dist/API_DOCUMENTATION.md).
-
-
 ## Node.js client
 
 ### Run Node.js client
-To run a Node.js client you will need a **publicly routable IP**, **Domain** and **SSL Certificate** (get a free one at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/index.js`.
-
-```bash
-cd clients/nodejs/
-node index.js --host=HOSTNAME --port=PORT --cert=SSL_CERT_FILE --key=SSL_KEY_FILE [options]
-```
-
-| **Configuration** | |
-| :--- | :--- |
-| `--host=HOSTNAME` | Hostname of the Node.js client. |
-| `--port=PORT` | Port to listen on for connections. |
-| `--cert=SSL_CERT_FILE` | SSL certificate file for your domain. CN should match HOSTNAME. |
-| `--key=SSL_KEY_FILE` | SSL private key file for your domain. |
-| **Options** | |
-| `--help` | Show usage instructions. |
-| `--log[=LEVEL]` | Configure global log level. |
-| `--log-tag=TAG[:LEVEL]` | Configure log level for a specific tag. |
-| `--miner[=THREADS]` | Activate mining on this node with THREADS parallel threads. |
-| `--passive` | Do not actively connect to the network. |
-| `--rpc[=PORT]` | Start JSON-RPC server on port PORT (default: 8648). |
-| `--statistics[=INTERVAL]` | Output miner statistics every INTERVAL seconds. |
-| `--type=TYPE` | Configure the consensus type, one of full (default), light or nano. |
-| `--wallet-seed=SEED` | Initialize wallet using SEED as a wallet seed. |
-| `--wallet-address=ADDRESS` | Initialize wallet using ADDRESS as a wallet address. |
+To run a Node.js client you will need a **publicly routable IP**, **Domain** and **SSL Certificate** (get a free one at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/nimiq` with the respective [configuration](doc/configuration.md).
 
 ### Build binary packages for Linux distributions
 
+After completing the steps from the [quickstart](#quickstart), follow this steps to build a package for a Linux distribution. After the build process:
+- the package will be located in the `dist/` directory, 
+- a [configuration](#run-node-js-client) file will be located in `/etc/nimiq/nimiq.conf`. 
+- and a Systemd service will be create which you can manage with `systemctl start|stop|restart nimiq`. 
+
 #### Debian/Ubuntu (deb package format)
-After running `npm install` or `yarn` (from the Quickstart section):
+After running `yarn` (from the Quickstart section):
 
 1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (if you don't, they can be easily installed with `apt`).
-2. Run `npm run build-deb`.
+2. Run `yarn run build-deb`.
 3. The .deb package will be located in the `dist/` directory.
 
 Note: creating deb packages only works on Debian-based distributions (only has been extensively tested on Ubuntu).
 
 #### Fedora/CentOS/RHEL (rpm package format)
-After running `npm install` or `yarn` (from the Quickstart section):
+After running `yarn` (from the Quickstart section):
 
 1. Make sure you have `rpm-build` installed (if you don't, it can be easily installed with `yum` or `dnf`).
-2. Run `npm run build-rpm`.
+2. Run `yarn run build-rpm`.
 3. The .rpm package will be located in the `dist/` directory.
 
 Note: creating rpm packages only works on rpm-based distributions (only has been extensively tested on Fedora).
 
-
-## Core Developers
-Developers are free to choose between `npm` and `yarn` for managing the dependencies.
-### Installation for Core Developers (using npm)
-- Node.js latest version (> 8.0.0)
-- Dependencies: `npm install`
-
-### Installation for Core Developers (using yarn)
-- Node.js latest version (> 8.0.0)
-- Dependencies: `yarn`
-
 ### Test and Build
 
 #### Run Testsuite
-- `npm test` or `yarn test` runs browser and Node.js tests.
-- `npm run test-browser` or `yarn test-browser` runs the testsuite in your browser only.
-- `npm run test-node` or `yarn test-node` runs the testsuite in Node.js only.
+- `yarn test` runs browser and Node.js tests.
+- `yarn test-browser` runs the testsuite in your browser only.
+- `yarn test-node` runs the testsuite in Node.js only.
 
 #### Run ESLint
-`npm run lint` or `yarn lint` runs the ESLint javascript linter.
+`yarn lint` runs the ESLint javascript linter.
 
 #### Build
-Executing `npm run build` or `yarn build` concatenates all sources into `dist/{web,web-babel,web-crypto,node}.js`
-
-## Docker
-
-A Dockerfile is provided which allows for creating your own backbone image using the following arguments.
-
-| Argument | Description |
-| --- | --- |
-| BRANCH  | Defaults to *master* but can be any available git branch  |
-| PORT  | Defaults to TCP port *8080* |
-| DOMAIN  | Domain to be used for hosting the backbone node  |
-| KEY  | Path to an existing certificate key for the DOMAIN  |
-| CRT  | Path to an existing signed certificate for the DOMAIN  |
-| WALLET_SEED  | Pre-existing wallet private key  |
-
-### Building the Docker image using the above arguments
-```
-docker build \
-  --build-arg DOMAIN=<DOMAIN> \
-  --build-arg BRANCH=<BRANCH> \
-  --build-arg WALLET_SEED=<WALLET_SEED> \
-  --build-arg KEY=<KEY> \
-  --build-arg CRT=<CRT> \
-  --build-arg PORT=<PORT> \
-  -t nimiq .
-```
-
-### Running an instance of the image
-
-`docker run -d -p 8080:8080 -v /etc/letsencrypt/:/etc/letsencrypt/ --name "nimiq" nimiq`
-
-Note that you can override any of the arguments which were baked into the image at runtime with exception to the *BRANCH*. The -v flag here allows for mapping a local system path into the container for the purpose of using the existing *DOMAIN* certificates.
-
-### Check status
-`docker logs -f <instance_id_or_name>`
+Executing `yarn build` concatenates all sources into `dist/{web,web-babel,web-crypto,node}.js`
 
 ## Contribute
 
