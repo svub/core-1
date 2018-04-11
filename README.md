@@ -7,7 +7,7 @@ For a high-level introduction check out the [Nimiq White Paper](https://medium.c
 To dive into the details of the protocol architecture check out the [Nimiq Developer Reference](https://nimiq.com/developer-reference).
 
 ## Library Demo
-Check out our testnet [Browser Miner](https://nimiq.com/miner) and [Wallet](https://nimiq.com/wallet).
+Check out our [Testnet](https://nimiq-testnet.com).
 
 ## Quickstart
 
@@ -15,12 +15,12 @@ Check out our testnet [Browser Miner](https://nimiq.com/miner) and [Wallet](http
 2. On Ubuntu, install `git` and `build-essential`: `sudo apt-get install -y git build-essential`.
     - On other Linux systems, install `git`, `python2.7`, `make`, `gcc` and `gcc-c++`.
     - For MacOS or Windows, [check here for git](https://git-scm.com/downloads) and [here for compilation tools](https://github.com/nodejs/node-gyp#on-mac-os-x).
-3. If you want to use `yarn` to manage the dependencies, run: `sudo npm install -g yarn`.
-4. Install `gulp` globally: `sudo npm install -g gulp` or `yarn global add gulp`.
+3. Install yarn: `sudo npm install -g yarn`.
+4. Install `gulp` globally:  `yarn global add gulp`.
 5. Clone this repository: `git clone https://github.com/nimiq-network/core`.
 6. Enter the core directory: `cd core`.
-7. Run: `npm install` or `yarn`.
-8. Run: `npm run build` or `yarn build`.
+7. Run: `yarn`.
+8. Run: `yarn build`.
 9. Open `clients/browser/index.html` in your browser.
 
 ## Web Developers
@@ -41,17 +41,17 @@ Open `clients/browser/index.html` in your browser.
 Just include `<script src="dist/nimiq.js"></script>` in your project.
 
 ### API
-Visit the [API Documentation](dist/API_DOCUMENTATION.md).
+Visit the [API Documentation](https://doc.esdoc.org/github.com/nimiq-network/core/).
 
 
 ## Node.js client
 
 ### Run Node.js client
-To run a Node.js client you will need a **publicly routable IP**, **Domain** and **SSL Certificate** (get a free one at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/index.js`.
+To run a Node.js client you will need a **publicly routable IP**, **Domain** and **SSL Certificate** (get a free one at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/nimiq`.
 
 ```bash
 cd clients/nodejs/
-node index.js --host=HOSTNAME --port=PORT --cert=SSL_CERT_FILE --key=SSL_KEY_FILE [options]
+node nimiq --host=HOSTNAME --port=PORT --cert=SSL_CERT_FILE --key=SSL_KEY_FILE [options]
 ```
 
 | **Configuration** | |
@@ -74,47 +74,41 @@ node index.js --host=HOSTNAME --port=PORT --cert=SSL_CERT_FILE --key=SSL_KEY_FIL
 
 ### Build binary packages for Linux distributions
 
+After completing the steps from the [Quickstart](#quickstart), follow this steps to build a package for a Linux distribution. After building it:
+- the package will be located in the `dist/` directory, 
+- a [configuration](#run-node-js-client) file will be located in `/etc/nimiq/nimiq.conf`. 
+- and a Systemd service will be create which you can manage with `systemctl start|stop|restart nimiq`. 
+
 #### Debian/Ubuntu (deb package format)
-After running `npm install` or `yarn` (from the Quickstart section):
+After running `yarn` (from the Quickstart section):
 
 1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (if you don't, they can be easily installed with `apt`).
-2. Run `npm run build-deb`.
+2. Run `yarn run build-deb`.
 3. The .deb package will be located in the `dist/` directory.
 
 Note: creating deb packages only works on Debian-based distributions (only has been extensively tested on Ubuntu).
 
 #### Fedora/CentOS/RHEL (rpm package format)
-After running `npm install` or `yarn` (from the Quickstart section):
+After running `yarn` (from the Quickstart section):
 
 1. Make sure you have `rpm-build` installed (if you don't, it can be easily installed with `yum` or `dnf`).
-2. Run `npm run build-rpm`.
+2. Run `yarn run build-rpm`.
 3. The .rpm package will be located in the `dist/` directory.
 
 Note: creating rpm packages only works on rpm-based distributions (only has been extensively tested on Fedora).
 
-
-## Core Developers
-Developers are free to choose between `npm` and `yarn` for managing the dependencies.
-### Installation for Core Developers (using npm)
-- Node.js latest version (> 8.0.0)
-- Dependencies: `npm install`
-
-### Installation for Core Developers (using yarn)
-- Node.js latest version (> 8.0.0)
-- Dependencies: `yarn`
-
 ### Test and Build
 
 #### Run Testsuite
-- `npm test` or `yarn test` runs browser and Node.js tests.
-- `npm run test-browser` or `yarn test-browser` runs the testsuite in your browser only.
-- `npm run test-node` or `yarn test-node` runs the testsuite in Node.js only.
+- `yarn test` runs browser and Node.js tests.
+- `yarn test-browser` runs the testsuite in your browser only.
+- `yarn test-node` runs the testsuite in Node.js only.
 
 #### Run ESLint
-`npm run lint` or `yarn lint` runs the ESLint javascript linter.
+`yarn lint` runs the ESLint javascript linter.
 
 #### Build
-Executing `npm run build` or `yarn build` concatenates all sources into `dist/{web,web-babel,web-crypto,node}.js`
+Executing `yarn build` concatenates all sources into `dist/{web,web-babel,web-crypto,node}.js`
 
 ## Docker
 
@@ -149,6 +143,38 @@ Note that you can override any of the arguments which were baked into the image 
 
 ### Check status
 `docker logs -f <instance_id_or_name>`
+
+## JSON-RPC Client
+
+Usage: `node remote.js [options] action [args]`
+
+
+| **Options** | |
+| :--- | :--- |
+| `--host=HOST` | Define hostname or IP address of Nimiq JSON-RPC server to connect to. Defaults to local host.  |
+| `--port=PORT` | Define port corresponding to HOST. Defaults to 8648. |
+| `--user=USER` | Use basic authentication with username USER. The password will be prompted for. |
+| **Actions** | |
+| `account ADDR` | Display details for account with address ADDR. |
+| `accounts` | List local accounts. |
+| `block BLOCK` | Display details of block BLOCK. |
+| `constant CONST [VAL]` | Display value of constant CONST. If VAL is given, overrides constant const with value VAL.|
+| `mining` |  Display information on current mining settings. |
+| `mining.enabled [VAL] ` | Read or change enabled state of miner. |
+| `mining.threads [VAL]` | Read or change number of threads of miner. |
+| `peer PEER [ACTION]` | Display details about peer PEER. If ACTION is specified, invokes the named action on the peer. Currently supported actions include: connect, disconnect, ban, unban, fail |
+| `peers` | List all known peer addresses and their current connection state. |
+| `transaction TX` | Display details about transaction TX. |
+| `transaction BLOCK IDX` | Display details about transaction at index IDX inblock `BLOCK`. |
+| `transaction.receipt TX` | Display the transaction receipt for transaction TX. |
+| `transaction.send SENDER RECIPIENT VALUE FEE [DATA]` | Create, sign and send a transaction with the given properties. The sending account must be a local account. |
+| `transactions ADDR [LIMIT]` | Display at most LIMIT transactions involving address ADDR. |
+| `mempool` | Display mempool stats. |
+| `mempool.content [INCLUDE_TX]` | Display mempool content. If INCLUDE_TX is given, full transactions instead of transaction hashes are requested. |
+| `consensus.min_fee_per_byte [FEE]` | Read or change the current min fee per byte setting. |
+
+Most actions support output either in human-readable text form (default) or as JSON by appending '.json' to the action name. Addresses may be given in user- friendly address format, hex or base64 encoded. Blocks can be specified by hash in hex or base64 format or by the height on the main chain. Transactions are understood in hex or base64 format of their hash. Peers may be given as their peer id in hex or peer address.
+
 
 ## Contribute
 
