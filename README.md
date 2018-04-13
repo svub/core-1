@@ -43,7 +43,7 @@ Open `clients/browser/index.html` in your browser or include `<script src="dist/
 ## Node.js client
 
 ### Run Node.js client
-To run a Node.js client you will need a **publicly routable IP**, **Domain** and **SSL Certificate** (get a free one at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/nimiq` with the respective [configuration](doc/configuration.md).
+To run a Node.js client you will need a **publicly routable IP**, **Domain**, and **SSL Certificate** (get a free certificate at [letsencrypt.org](https://letsencrypt.org/)). Start the client by running `clients/nodejs/nimiq` with the respective [configuration](doc/configuration.md).
 
 ### Build binary packages for Linux distributions
 
