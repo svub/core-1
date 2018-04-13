@@ -47,10 +47,11 @@ To run a Node.js client you will need a **publicly routable IP**, **Domain**, an
 
 ### Build binary packages for Linux distributions
 
-After completing the steps from the [quickstart](#quickstart), follow this steps to build a package for a Linux distribution. After the build process:
+After completing the [Quickstart](#quickstart), follow the steps below to build a Linux package. After the build process:
 - the package will be located in the `dist/` directory, 
-- a [configuration](#run-node-js-client) file will be located in `/etc/nimiq/nimiq.conf`. 
-- and a Systemd service will be create which you can manage with `systemctl start|stop|restart nimiq`. 
+- once the package has been installed,
+    - a [configuration](#run-node-js-client) file will be located in `/etc/nimiq/nimiq.conf` and
+    - a `systemd` service will be avialable which you can manage with `systemctl start|stop|restart nimiq`. 
 
 #### Debian/Ubuntu (deb package format)
 After running `yarn` (from the Quickstart section):
