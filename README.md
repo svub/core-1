@@ -8,7 +8,7 @@
 - [Nimiq Developer Reference](https://nimiq.com/developer-reference): Details of the protocol architecture.
 - [API Documentation](https://doc.esdoc.org/github.com/nimiq-network/core/).
 - [JSON-RPC Client](doc/json-rpc-client.md): Usage instructions for the Nimiq JSON-RPC Client.
-- [Docker Documentation](doc/json-rpc-client.md): How to quickly run and use a Nimiq Docker Image.
+- [Docker Documentation](doc/docker.md): Instuctions on setting up a Nimiq Node using Docker.
 
 ## Library Demo
 Check out our [Testnet](https://nimiq-testnet.com).
