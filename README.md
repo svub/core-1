@@ -38,11 +38,7 @@ Follow the [Quickstart](#quickstart) guide or make use of our CDN:
 
 ## Browser client
 
-### Run browser client
-Open `clients/browser/index.html` in your browser.
-
-### Build your own browser client
-Just include `<script src="dist/nimiq.js"></script>` in your project.
+Open `clients/browser/index.html` in your browser or include `<script src="dist/nimiq.js"></script>` in your project.
 
 ## Node.js client
 
