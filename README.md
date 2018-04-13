@@ -26,11 +26,11 @@ Check out our [Testnet](https://nimiq-testnet.com).
 7. Open `clients/browser/index.html` in your browser.
 
 ## Web Developers
-### Most simple Web Application on top of the Nimiq Blockchain
+### Simple Web Application on top of Nimiq
 A good way to get started is to have a look at [the most simple web application on top of the Nimiq Blockchain](https://demo.nimiq.com/).
 
-### Installation for Web Developers
-Follow the Quickstart guide or use our CDN:
+### Getting Started
+Follow the [Quickstart](#quickstart) guide or make use of our CDN:
 
 ```
 <script src="https://cdn.nimiq.com/core/nimiq.js"></script>
