@@ -54,22 +54,20 @@ After completing the [Quickstart](#quickstart), follow the steps below to build 
     - a `systemd` service will be avialable which you can manage with `systemctl start|stop|restart nimiq`. 
 
 #### Debian/Ubuntu (deb package format)
-After running `yarn` (cf. [Quickstart](#quickstart)):
 
-1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (install with `apt` otherwise).
+1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (otherwise, install with `apt`).
 2. Run `yarn run build-deb`.
 3. The deb package will be located in the `dist/` directory.
 
 Note: creating deb packages only works on Debian-based distributions and has been tested extensively on Ubuntu and Debian.
 
 #### Fedora/CentOS/RHEL (rpm package format)
-After running `yarn` (from the Quickstart section):
 
-1. Make sure you have `rpm-build` installed (if you don't, it can be easily installed with `yum` or `dnf`).
+1. Make sure you have `rpm-build` installed (otherwise, install with `yum` or `dnf`).
 2. Run `yarn run build-rpm`.
-3. The .rpm package will be located in the `dist/` directory.
+3. The rpm package will be located in the `dist/` directory.
 
-Note: creating rpm packages only works on rpm-based distributions (only has been extensively tested on Fedora).
+Note: creating rpm packages only works on rpm-based distributions and has been tested extensively on Fedora only.
 
 ### Test and Build
 
