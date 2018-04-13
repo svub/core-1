@@ -10,22 +10,20 @@
 - [JSON-RPC Client](doc/json-rpc-client.md): Usage instructions for the Nimiq JSON-RPC Client.
 - [Docker Documentation](doc/docker.md): Instuctions on setting up a Nimiq Node using Docker.
 
-## Library Demo
+## Demo
 Check out our [Testnet](https://nimiq-testnet.com).
 
 ## Quickstart
 
 1. Install [Node.js](https://nodejs.org) v8.0.0 or higher.
-2. On Ubuntu, install `git` and `build-essential`: `sudo apt-get install -y git build-essential`.
+2. On Ubuntu and Debian, install `git` and `build-essential`: `sudo apt-get install -y git build-essential`.
     - On other Linux systems, install `git`, `python2.7`, `make`, `gcc` and `gcc-c++`.
     - For MacOS or Windows, [check here for git](https://git-scm.com/downloads) and [here for compilation tools](https://github.com/nodejs/node-gyp#on-mac-os-x).
 3. Install yarn: `sudo npm install -g yarn`.
 4. Install `gulp` globally:  `yarn global add gulp`.
 5. Clone this repository: `git clone https://github.com/nimiq-network/core`.
-6. Enter the core directory: `cd core`.
-7. Run: `yarn`.
-8. Run: `yarn build`.
-9. Open `clients/browser/index.html` in your browser.
+6. Build the project: `cd core && yarn && yarn build`.
+7. Open `clients/browser/index.html` in your browser.
 
 ## Web Developers
 ### Most simple Web Application on top of the Nimiq Blockchain
