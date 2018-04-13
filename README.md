@@ -54,13 +54,13 @@ After completing the [Quickstart](#quickstart), follow the steps below to build 
     - a `systemd` service will be avialable which you can manage with `systemctl start|stop|restart nimiq`. 
 
 #### Debian/Ubuntu (deb package format)
-After running `yarn` (from the Quickstart section):
+After running `yarn` (cf. [Quickstart](#quickstart)):
 
-1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (if you don't, they can be easily installed with `apt`).
+1. Make sure you have `dpkg`, `jq` and `fakeroot` installed (install with `apt` otherwise).
 2. Run `yarn run build-deb`.
-3. The .deb package will be located in the `dist/` directory.
+3. The deb package will be located in the `dist/` directory.
 
-Note: creating deb packages only works on Debian-based distributions (only has been extensively tested on Ubuntu).
+Note: creating deb packages only works on Debian-based distributions and has been tested extensively on Ubuntu and Debian.
 
 #### Fedora/CentOS/RHEL (rpm package format)
 After running `yarn` (from the Quickstart section):
